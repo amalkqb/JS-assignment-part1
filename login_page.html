@@ -1,0 +1,59 @@
+<DOCTYPE html>
+<html>
+  <head><title>My Page</title>
+    <link href="custom.css" rel="stylesheet">
+    <script>
+      function validate(){
+        document.getElementById("email_msg").innerHTML="";
+        document.getElementById("pwd_msg").innerHTML="";
+        var email = document.getElementById("email").value;
+        var password = document.getElementById("password").value;
+
+        if(email==""){
+          document.getElementById("email_msg").innerHTML="Please enter the email address.";
+        }
+        else if(password==""){
+          document.getElementById("pwd_msg").innerHTML="Please enter the password.";
+        }
+        else{
+          return true;
+        }
+      }
+   </script>
+  </head>
+
+  <body>
+    <!--Nav bar-->
+    <div class="topnav">
+      <a class="active" href="#">login</a>
+      <a href="signup.html">Sign up</a>
+      <a href="contact.html">contact us</a>
+    </div>
+    <!--end navbar-->
+
+    <div class="login-page">
+    <div class="form">
+      <h2><center>Log In<center></h2><hr><br>
+      <form class="register-form">
+        <input type="text" placeholder="name"/>
+        <input type="password" placeholder="password"/>
+        <input type="text" placeholder="email address"/>
+        <button>create</button>
+        <p class="message">Already registered? <a href="#">Sign In</a></p>
+      </form>
+      <form action="" method="" class="login-form">
+        <label for="email">Email</label>
+        <input id = "email" type="text" placeholder="email"/>
+
+        <span id="email_msg"></span><br><br><br>
+        <label for="psw">Password</label>
+        <input id = "password" type="password" placeholder="password"/>
+        <span id="pwd_msg"></span><br><br><br>
+        <button type="button" onclick="validate()">login</button>
+        <p class="message">Not registered? <a href="signup.html">Create an account</a></p>
+      </form>
+     </div>
+    </div>
+
+  </body>
+</html>

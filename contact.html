@@ -1,0 +1,97 @@
+<DOCTYPE html>
+<html>
+  <head><title>Contact us</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <link href="signup_style.css" rel="stylesheet">
+    <script>
+    function validate(){
+      document.getElementById("email_msg").innerHTML="";
+      document.getElementById("name_msg").innerHTML="";
+      document.getElementById("phone_msg").innerHTML="";
+      document.getElementById("questions_msg").innerHTML="";
+
+      var email = document.getElementById("email").value;
+      var name = document.getElementById("name").value;
+      var phone = document.getElementById("phone").value;
+      var questions = document.getElementById("questions").value;
+
+      if(name ==""){
+        document.getElementById("name_msg").innerHTML="Please enter your name.";
+      }
+      else if(name.length<3 || name.length>20){
+        document.getElementById("name_msg").innerHTML="length of name should be between 3 and 20.";
+      }
+      else if(email==""){
+        document.getElementById("email_msg").innerHTML="Please enter the email address.";
+      }
+      else if(phone == ""){
+        document.getElementById("phone_msg").innerHTML="Please enter the phone number.";
+      }
+      else if(questions==""){
+        document.getElementById("questions_msg").innerHTML="Please enter the question.";
+      }
+      else if(questions.length<1 || questions.length>20){
+        document.getElementById("questions_msg").innerHTML="length of questions should be between 1 and 20.";
+      }
+      else{
+        var vname = $("#name").val();
+        var vemail = $("#email").val();
+        var vphone = $("#phone").val();
+        var vquestions = $("#questions").val();
+
+        $.post("http://demo6835492.mockable.io/sendEmail",
+        {
+          'name':vname,
+          'email':vemail,
+          'phone':vphone,
+          'questions':vquestions
+        },
+        function(response,status){
+          alert("Status : " + status);
+        });
+      }
+    }
+
+
+  </script>
+ </head>
+
+ <body>
+    <!--Nav bar-->
+    <div class="topnav">
+      <a href="login_page.html">login</a>
+      <a  href="signup.html">Sign up</a>
+      <a class="active" href="#">contact us</a>
+    </div>
+    <!--end navbar-->
+
+    <form style="border:1px solid #ccc">
+      <div class="container">
+      <h1>Contact Us</h1>
+      <hr>
+      <label for="name"><b>Name*</b></label>
+      <input id = "name" type="text" placeholder="Name" name="name" required>
+      <span id="name_msg"></span><br><br><br>
+
+      <label for="email"><b>Email*</b></label>
+      <input type="text" id = "email" placeholder="Enter Email" name="email" required>
+      <span id="email_msg"></span><br><br><br>
+
+      <label for="phone"><b>Phone*</b></label>
+      <input type="number" id= "phone" placeholder="phone number" name="phone" required>
+      <span id="phone_msg"></span><br><br><br>
+
+      <label for="questions"><b>Questions*</b></label>
+      <input type="textarea" id= "questions" placeholder="questions" name="questions" required>
+      <span id="questions_msg"></span><br><br><br>
+
+      <br><br>
+
+      <div class="clearfix">
+        <button id="btn" type="button" onclick="validate()" class="signupbtn">Contact Us</button>
+      </div>
+     </div>
+    </form>
+
+  </body>
+</html>

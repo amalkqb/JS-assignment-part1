@@ -1,0 +1,102 @@
+<DOCTYPE html>
+<html>
+  <head><title>Signup</title>
+    <link href="signup_style.css" rel="stylesheet">
+    <script>
+      function emailcheck(email){
+        var pieces = email.split('@')
+        if(pieces.length == 2 && pieces[0].length>0 && pieces[1].length>0){
+          var domain = pieces[1].split('.');
+          if(domain.length==2 && domain[0].length>0 && domain[1].length>0){
+            return true;
+          }
+          else{
+            return false;
+          }
+        }
+        else{
+          return false;
+        }
+      }
+
+      function validate(){
+        document.getElementById("email_msg").innerHTML="";
+        document.getElementById("pwd_msg").innerHTML="";
+        document.getElementById("name_msg").innerHTML="";
+
+        var email = document.getElementById("email").value;
+        var password = document.getElementById("password").value;
+        var name = document.getElementById("name").value;
+
+        if(name ==""){
+          document.getElementById("name_msg").innerHTML="Please enter your name.";
+        }
+        else if(name.length<1 || name.length>20){
+          document.getElementById("name_msg").innerHTML="length of name should be between 1 and 20.";
+        }
+        else if(email==""){
+          document.getElementById("email_msg").innerHTML="Please enter the email address.";
+        }
+        else if(email.length>0){
+          var email_ok = false;
+          email_ok  = emailcheck(email);
+          if(!email_ok){
+            document.getElementById("email_msg").innerHTML="Invalid email ID";
+          }
+          else{
+            if(password==""){
+              document.getElementById("pwd_msg").innerHTML="Please enter the password.";
+            }
+            else if(password.length<6 || password.length>15){
+              document.getElementById("pwd_msg").innerHTML="length of password should be between 6 and 15.";
+            }
+          }
+        }
+        else if(password==""){
+          document.getElementById("pwd_msg").innerHTML="Please enter the password.";
+        }
+        else if(password.length<6 || password.length>15){
+          document.getElementById("pwd_msg").innerHTML="length of password should be between 6 and 15.";
+        }
+        else{
+          return true;
+        }
+      }
+    </script>
+  </head>
+
+  <body>
+    <!--Nav bar-->
+    <div class="topnav">
+      <a href="login_page.html">login</a>
+      <a class="active" href="#">Sign up</a>
+      <a href="contact.html">contact us</a>
+    </div>
+    <!--end navbar-->
+
+    <form style="border:1px solid #ccc">
+      <div class="container">
+      <h1>Sign Up</h1>
+      <hr>
+      <label for="name"><b>Name*</b></label>
+      <input id = "name" type="text" placeholder="Name" name="name" required>
+      <span id="name_msg"></span><br><br><br>
+
+      <label for="email"><b>Email*</b></label>
+      <input type="text" id = "email" placeholder="Enter Email" name="email" required>
+      <span id="email_msg"></span><br><br><br>
+
+      <label for="psw"><b>Password*</b></label>
+      <input type="password" id= "password" placeholder="Enter Password" name="psw" required>
+      <span id="pwd_msg"></span><br><br><br>
+
+      <br><br>
+
+      <div class="clearfix">
+        <button type="button" onclick="validate()" class="signupbtn">Sign Up</button>
+      </div>
+     </div>
+    </form>
+
+  </body>
+</html>
